@@ -12,3 +12,15 @@ export const useLogin = () => {
         error: loginMutation.error, 
     };
 };
+
+export const useRegister = () => {
+    const registerMutation = useMutation({
+        mutationFn: authApiRequest.register,
+    });
+
+    return {
+        register: registerMutation.mutate,
+        isLoading: registerMutation.isPending,
+        error: registerMutation.error,
+    };
+};
