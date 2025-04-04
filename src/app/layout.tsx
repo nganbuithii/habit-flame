@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 // import 'nes.css/css/nes.min.css';
 import { Press_Start_2P } from "next/font/google";
+import AppProvider from "@/components/app-provider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,9 +29,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${pixelFont.variable} antialiased`}>
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${pixelFont.variable} antialiased`}>
+        <AppProvider >
+          {children}
+        </AppProvider>
       </body>
     </html>
   );

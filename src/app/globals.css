@@ -1,10 +1,25 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import 'nes.css/css/nes.min.css';
 
+/* globals.css */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #F28D8D;
+  --primary-hover: #E57F7F; 
+  --primary-light: #F8C8C8;
+  
+  --secondary: #F4A6C2; 
+  --secondary-hover: #F28DB5; 
+  --secondary-light: #F9D1E0; 
+
+  --accent-yellow: #F9E4B7; 
+  --accent-green: #B7E4B4; 
+  --accent-blue: #A6D9F7; 
+
+  --background: #FFFFFF; 
+  --foreground: #171717; 
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -15,32 +30,26 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Base Colors */
     --background: #ffffff;
     --foreground: #171717;
     
-    /* Primary Theme Colors */
     --primary: #FF6B95;         /* Cute Pink */
     --primary-hover: #FF4D7F;   /* Darker Pink */
     --primary-light: #FFDCE5;   /* Light Pink */
     
-    /* Secondary Theme Colors */
     --secondary: #7F7CFF;       /* Soft Purple */
     --secondary-hover: #6561E0; /* Darker Purple */
     --secondary-light: #E6E5FF; /* Light Purple */
     
-    /* Accent Colors */
     --accent-yellow: #FFD54F;   /* Cute Yellow */
     --accent-green: #4CE0B3;    /* Mint Green */
     --accent-blue: #5DADE2;     /* Sky Blue */
     
-    /* UI Colors */
     --success: #66D9A8;         /* Pastel Green */
     --warning: #FFCF70;         /* Pastel Yellow */
     --error: #FF8B94;           /* Pastel Red */
     --info: #80DEEA;            /* Pastel Blue */
     
-    /* Neutral Colors */
     --neutral-50: #FAFAFA;
     --neutral-100: #F5F5F5;
     --neutral-200: #EEEEEE;
@@ -52,7 +61,6 @@
     --neutral-800: #424242;
     --neutral-900: #212121;
   
-    /* Gradient Combinations */
     --gradient-primary: linear-gradient(to right, var(--primary), var(--secondary));
     --gradient-sunny: linear-gradient(to right, var(--primary), var(--accent-yellow));
     --gradient-ocean: linear-gradient(to right, var(--secondary), var(--accent-blue));
@@ -69,11 +77,74 @@ body {
   font-family: var(--font-pixel);
   letter-spacing: -1px;
 }
-
+*{
+  font-family: var(--font-pixel);
+}
 @keyframes bounce-slow {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
 .animate-bounce-slow {
   animation: bounce-slow 3s ease-in-out infinite;
+}
+
+
+/* Input focus states */
+input:focus-visible {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+/* Custom button styling with animation */
+button {
+  transition: all 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Enhanced gradient text effect */
+.text-cute-gradient {
+  background-image: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0px 0px 10px rgba(242, 141, 141, 0.2);
+}
+
+/* Soft shadow effects */
+.shadow-soft {
+  box-shadow: 0 10px 25px -5px rgba(242, 141, 141, 0.1), 0 10px 10px -5px rgba(242, 141, 141, 0.04);
+}
+
+/* Cute hover animations */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+
+/* Form validation styling */
+input:invalid:focus {
+  border-color: var(--error);
+  box-shadow: 0 0 0 4px rgba(255, 139, 148, 0.2);
+}
+
+/* Soft bounce animation */
+@keyframes soft-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-soft-bounce {
+  animation: soft-bounce 2s infinite ease-in-out;
+}
+.text-error {
+  color: var(--error); 
+  font-size: 0.5rem; 
+  margin-top: 5px;
 }
