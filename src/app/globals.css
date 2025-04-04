@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 :root {
   --background: #ffffff;
@@ -14,8 +15,48 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Base Colors */
+    --background: #ffffff;
+    --foreground: #171717;
+    
+    /* Primary Theme Colors */
+    --primary: #FF6B95;         /* Cute Pink */
+    --primary-hover: #FF4D7F;   /* Darker Pink */
+    --primary-light: #FFDCE5;   /* Light Pink */
+    
+    /* Secondary Theme Colors */
+    --secondary: #7F7CFF;       /* Soft Purple */
+    --secondary-hover: #6561E0; /* Darker Purple */
+    --secondary-light: #E6E5FF; /* Light Purple */
+    
+    /* Accent Colors */
+    --accent-yellow: #FFD54F;   /* Cute Yellow */
+    --accent-green: #4CE0B3;    /* Mint Green */
+    --accent-blue: #5DADE2;     /* Sky Blue */
+    
+    /* UI Colors */
+    --success: #66D9A8;         /* Pastel Green */
+    --warning: #FFCF70;         /* Pastel Yellow */
+    --error: #FF8B94;           /* Pastel Red */
+    --info: #80DEEA;            /* Pastel Blue */
+    
+    /* Neutral Colors */
+    --neutral-50: #FAFAFA;
+    --neutral-100: #F5F5F5;
+    --neutral-200: #EEEEEE;
+    --neutral-300: #E0E0E0;
+    --neutral-400: #BDBDBD;
+    --neutral-500: #9E9E9E;
+    --neutral-600: #757575;
+    --neutral-700: #616161;
+    --neutral-800: #424242;
+    --neutral-900: #212121;
+  
+    /* Gradient Combinations */
+    --gradient-primary: linear-gradient(to right, var(--primary), var(--secondary));
+    --gradient-sunny: linear-gradient(to right, var(--primary), var(--accent-yellow));
+    --gradient-ocean: linear-gradient(to right, var(--secondary), var(--accent-blue));
+    --gradient-mint: linear-gradient(to right, var(--accent-blue), var(--accent-green));
   }
 }
 
@@ -23,4 +64,16 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+.font-pixel {
+  font-family: var(--font-pixel);
+  letter-spacing: -1px;
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
 }
