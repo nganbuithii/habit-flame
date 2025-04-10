@@ -12,5 +12,10 @@ export const registerSchema = z.object({
     message: "Passwords do not match",
     path: ["confirmPassword"],
 });
+export const habitSchema = z.object({
+    name: z.string().min(1, "Habit name is required"),
+    description: z.string().optional(),
+  });
 export type LoginFormData = z.infer<typeof loginSchema>;
 export type RegisterFormData = z.infer<typeof registerSchema>;
+export type HabitFormData = z.infer<typeof habitSchema>;

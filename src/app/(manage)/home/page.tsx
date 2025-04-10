@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from '@/components/dashboard/Header';
 import { FlameDetails, Habit } from '@/lib/subabase/type';
 import { TabSelector } from '@/components/dashboard/Tab';
@@ -9,20 +9,24 @@ import { AddHabitCard } from '@/components/dashboard/AddHabitCart';
 import { ActivityCalendar } from '@/components/dashboard/Calendar';
 import { BottomNavigation } from '@/components/dashboard/BottomNav';
 import { useAuthStore } from '@/store/authStore';
+import { useGetListHabit } from '@/queries/useHabit';
 
 const Dashboard = () => {
   const { user } = useAuthStore();
   console.log("USER", user)
-  const [habits, setHabits] = useState<Habit[]>([
-    { id: 1, name: "Reading", streak: 7, bestStreak: 12, lastChecked: true, level: 2 },
-    { id: 2, name: "Exercise", streak: 15, bestStreak: 15, lastChecked: true, level: 3 },
-    { id: 3, name: "Learn English", streak: 3, bestStreak: 5, lastChecked: true, level: 1 },
-    { id: 4, name: "Drink Water", streak: 0, bestStreak: 21, lastChecked: false, level: 0 },
-  ]);
+  const [habits, setHabits] = useState<Habit[]>([]);
 
   const [activeTab, setActiveTab] = useState('flames');
   const [totalDays] = useState(28);
-
+  const { data: fetchedHabits, isSuccess } = useGetListHabit({
+    id: user?.id || '',
+    enabled: !!user?.id,
+  });
+  useEffect(() => {
+    if (isSuccess && fetchedHabits) {
+      setHabits(fetchedHabits);
+    }
+  }, [isSuccess, fetchedHabits]);
   const getFlameDetails = (streak: number, isChecked: boolean): FlameDetails => {
     if (!isChecked) return { color: "text-gray-300", size: "text-lg" };
     if (streak >= 30) return { color: "text-amber-500", size: "text-4xl" };
@@ -52,9 +56,7 @@ const Dashboard = () => {
       <Header totalDays={totalDays} />
       <div className="container mx-auto p-6 max-w-5xl">
         <div className="mb-10">
-          <h2 className="text-2xl font-medium text-gray-800">
-            Hello, <span className="text-red-400">{user?.email}</span>!
-          </h2>
+        
           <div className="h-1 bg-gradient-to-r from-red-300 to-orange-300 w-20 mt-2 mb-4 rounded-full"></div>
           <p className="text-gray-500 text-sm">A great day to nurture your habits!</p>
         </div>
