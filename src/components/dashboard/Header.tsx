@@ -1,7 +1,7 @@
-import { Award, User } from "lucide-react";
+import {  User } from "lucide-react";
 import { useAuthStore } from '@/store/authStore';
 
-export const Header = ({ totalDays }: { totalDays: number }) => {
+export const Header = () => {
     const { user } = useAuthStore();
     
     return (
@@ -10,11 +10,7 @@ export const Header = ({ totalDays }: { totalDays: number }) => {
                 <div className="flex justify-between items-center">
                     <div className="flex items-center gap-4">
                         <h1 className="text-xl font-medium text-gray-800">Habit Flame</h1>
-                        <div className="h-6 w-px bg-gray-200"></div>
-                        <div className="flex items-center gap-2">
-                            <Award className="text-gray-400 w-4 h-4" />
-                            <span className="text-sm text-gray-600">{totalDays} days streak</span>
-                        </div>
+                       
                     </div>
                     
                     <div className="flex items-center gap-4">

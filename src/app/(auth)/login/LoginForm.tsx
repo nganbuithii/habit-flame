@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import { useLogin } from "@/queries/useAuth";
 import { Spinner } from "@/components/ui/spinner";
 import { useAuthStore } from "@/store/authStore";
-import Cookies from "js-cookie";
 
 export default function LoginForm() {
     const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>({
@@ -26,7 +25,6 @@ export default function LoginForm() {
 
         login(data, {
             onSuccess: (response) => {
-                Cookies.set("accessToken", response.token, { expires: 7 });
                 setUser(response.user);
                 router.push("/home");
             },

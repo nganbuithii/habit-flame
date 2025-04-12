@@ -9,7 +9,7 @@ export const AddHabitCard = () => {
         <>
             <div 
                 onClick={() => setIsOpen(true)}
-                className="bg-white border border-dashed border-gray-200 p-5 rounded-lg flex items-center justify-center h-64 cursor-pointer hover:bg-gray-50 transition-colors group"
+                className="bg-white border border-dashed border-gray-200 p-5 rounded-lg flex items-center justify-center h-48 cursor-pointer hover:bg-gray-50 transition-colors group"
             >
                 <div className="text-center">
                     <div className="h-12 w-12 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-gray-100 transition-colors">
