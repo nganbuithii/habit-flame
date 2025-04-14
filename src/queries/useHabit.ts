@@ -37,7 +37,9 @@ export const useCheckInHabit = () => {
         onSuccess: (_, id) => {
             queryClient.invalidateQueries({ queryKey: ['habit', id] });
             queryClient.invalidateQueries({ queryKey: ['habits'] });
+            queryClient.refetchQueries({ queryKey: ['habits'] });
         },
+        
     });
 };
 export const useDeleteHabit = () => {

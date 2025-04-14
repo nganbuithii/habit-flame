@@ -1,6 +1,6 @@
 import { supabase } from "@/lib/subabase/client";
 import { NextResponse } from "next/server";
-import { startOfDay, subDays, isSameDay } from "date-fns";
+import { format, subDays, isSameDay, startOfToday } from "date-fns";
 
 export async function POST(
   req: Request,
@@ -10,7 +10,7 @@ export async function POST(
   try {
     const habitId = (await params).habitId;
 
-    const today = startOfDay(new Date()).toISOString().split("T")[0]; 
+    const today = format(startOfToday(), "yyyy-MM-dd");
 
 
     const { data: habit, error: habitError } = await supabase

@@ -2,7 +2,6 @@
 import React from 'react';
 import { useParams } from 'next/navigation';
 import { Header } from '@/components/dashboard/Header';
-import { BottomNavigation } from '@/components/dashboard/BottomNav';
 import { useCheckInHabit, useGetDetailHabit } from '@/queries/useHabit';
 import { Spinner } from '@/components/ui/spinner';
 import { ActivityCalendar } from '@/components/dashboard/Calendar';
@@ -11,6 +10,7 @@ import { HabitHeader } from '@/components/habit-detail/HabitHeader';
 import { StreakCard } from '@/components/habit-detail/StreakCard';
 import { ProgressSection } from '@/components/habit-detail/ProgressSection';
 import { CheckInButton } from '@/components/habit-detail/CheckInButton';
+import BottomNavigation from '@/components/dashboard/BottomNav';
 
 interface Activity {
     id: string;
@@ -58,7 +58,9 @@ const HabitDetailPage = () => {
         );
     }
 
-    const today = new Date().toISOString().split('T')[0];
+    const today = new Date().toLocaleDateString('sv-SE');
+console.log("today", today)
+
     const checkedInToday = activities?.some(activity => activity.checkin_date === today) ?? false;
     const level = Math.floor(habit.current_streak / 7) + 1;
 
